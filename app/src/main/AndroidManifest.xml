@@ -10,11 +10,24 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+<<<<<<< HEAD
         android:theme="@style/AppTheme">
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".VerifyPhoneActivity" />
         <activity android:name=".CreateAccountActivity"></activity>
         <activity android:name=".MainActivity" />
+=======
+        android:theme="@style/Theme.Smartparking">
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".CreateAccountActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+>>>>>>> ac5cc33b7f1f99dfb77ebc06c8bed026c86905e0
     </application>
 
 </manifest>

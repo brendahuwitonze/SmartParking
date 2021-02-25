@@ -1,14 +1,25 @@
 package com.example.smartparking;
 
+<<<<<<< HEAD
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
+=======
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+>>>>>>> ac5cc33b7f1f99dfb77ebc06c8bed026c86905e0
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+<<<<<<< HEAD
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +33,13 @@ import butterknife.ButterKnife;
 
 public class CreateAccountActivity extends AppCompatActivity implements View.OnClickListener{
 
+=======
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+
+public class CreateAccountActivity extends AppCompatActivity implements View.OnClickListener {
+>>>>>>> ac5cc33b7f1f99dfb77ebc06c8bed026c86905e0
     @BindView(R.id.createUserButton)
     Button mCreateUserButton;
     @BindView(R.id.nameEditText)
@@ -30,6 +48,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     EditText mEmailEditText;
     @BindView(R.id.passwordEditText)
     EditText mPasswordEditText;
+<<<<<<< HEAD
     @BindView(R.id.editTextPhone) EditText mPhoneEditText;
     @BindView(R.id.loginTextView)
     TextView mLoginTextView;
@@ -40,10 +59,28 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_create_account);
         ButterKnife.bind(this);
 
+=======
+    @BindView(R.id.confirmPasswordEditText)
+    EditText mConfirmPasswordEditText;
+    @BindView(R.id.loginTextView)
+    TextView mLoginTextView;
+    public static final String TAG = CreateAccountActivity.class.getSimpleName();
+    private ProgressDialog mAuthProgressDialog;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_create_account);
+        ButterKnife.bind(this);
+//        createAuthProgressDialog();
+>>>>>>> ac5cc33b7f1f99dfb77ebc06c8bed026c86905e0
         mLoginTextView.setOnClickListener(this);
         mCreateUserButton.setOnClickListener(this);
     }
 
+<<<<<<< HEAD
     @Override
     public void onClick(View view) {
         if (view == mLoginTextView) {
@@ -56,10 +93,19 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
             createNewUser();
         }
     }
+=======
+//    private void createAuthProgressDialog() {
+//        mAuthProgressDialog = new ProgressDialog(this);
+//        mAuthProgressDialog.setTitle("Loading...");
+//        mAuthProgressDialog.setMessage("Authenticating with Firebase...");
+//        mAuthProgressDialog.setCancelable(false);
+//    }
+>>>>>>> ac5cc33b7f1f99dfb77ebc06c8bed026c86905e0
 
     private void createNewUser() {
         final String name = mNameEditText.getText().toString().trim();
         final String email = mEmailEditText.getText().toString().trim();
+<<<<<<< HEAD
         final String password = mPasswordEditText.getText().toString().trim();
         final String phoneNumber = mPhoneEditText.getText().toString().trim();
 
@@ -87,6 +133,35 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
             return false;
         }
         return true;
+=======
+        String password = mPasswordEditText.getText().toString().trim();
+        String confirmPassword = mConfirmPasswordEditText.getText().toString().trim();
+        boolean validEmail = isValidEmail(email);
+        boolean validName = isValidName(name);
+        boolean validPassword = isValidPassword(password, confirmPassword);
+        if (!validEmail || !validName || !validPassword) return;
+
+
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        if (view == mCreateUserButton) {
+            createNewUser();
+        }
+
+    }
+
+    private boolean isValidEmail(String email) {
+        boolean isGoodEmail =
+                (email != null && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches());
+        if (!isGoodEmail) {
+            mEmailEditText.setError("Please enter a valid email address");
+            return false;
+        }
+        return isGoodEmail;
+>>>>>>> ac5cc33b7f1f99dfb77ebc06c8bed026c86905e0
     }
 
     private boolean isValidName(String name) {
@@ -97,6 +172,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         return true;
     }
 
+<<<<<<< HEAD
     private boolean isValidEmail(String email) {
         boolean isGoodEmail = (email != null && Patterns.EMAIL_ADDRESS.matcher(email).matches());
         if (!isGoodEmail) {
@@ -104,5 +180,16 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
             return false;
         }
         return isGoodEmail;
+=======
+    private boolean isValidPassword(String password, String confirmPassword) {
+        if (password.length() < 6) {
+            mPasswordEditText.setError("Please create a password containing at least 6 characters");
+            return false;
+        } else if (!password.equals(confirmPassword)) {
+            mPasswordEditText.setError("Passwords do not match");
+            return false;
+        }
+        return true;
+>>>>>>> ac5cc33b7f1f99dfb77ebc06c8bed026c86905e0
     }
 }
